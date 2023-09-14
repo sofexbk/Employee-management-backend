@@ -18,7 +18,6 @@ import com.ackend.app.models.Employee;
 import com.ackend.app.repository.EmployeeRepository;
 
 
-
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
@@ -37,8 +36,6 @@ public class EmployeeController {
    public Employee createEmployee(@RequestBody Employee employee){
     return employeeRepository.save(employee);
    }
-
-
    //get employee by id rest Api
    @GetMapping("/employees/{id}")
    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
@@ -46,7 +43,6 @@ public class EmployeeController {
            .orElseThrow(()->new ResourceNotFoundException("Employee doesnt exist with id :"+id));
          return ResponseEntity.ok(employee);
    }
-
 
    //update employee rest Api
    @PutMapping("/employees/{id}")
@@ -59,7 +55,6 @@ public class EmployeeController {
      Employee updatedEmployee=employeeRepository.save(employee);
      return ResponseEntity.ok(updatedEmployee);
    }
-
    //delete employee rest Api
     @DeleteMapping("/employees/{id}")
      public ResponseEntity<java.util.Map<String, Boolean>> deleteEmployee (@PathVariable Long id){
@@ -71,8 +66,4 @@ public class EmployeeController {
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
      }
-
-
-
-
 }
